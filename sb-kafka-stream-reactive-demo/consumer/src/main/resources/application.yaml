@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    consumer:
+      group-id: wikimedia
+      bootstrap-servers: localhost:9092
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
