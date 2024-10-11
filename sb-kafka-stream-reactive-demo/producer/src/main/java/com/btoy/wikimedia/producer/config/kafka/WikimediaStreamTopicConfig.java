@@ -5,8 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
-import static com.btoy.wikimedia.producer.util.Statics.ONE;
-import static com.btoy.wikimedia.producer.util.Statics.TOPIC_NAME;
+import static com.btoy.wikimedia.producer.util.Statics.*;
 
 @Configuration
 public class WikimediaStreamTopicConfig {
@@ -14,9 +13,9 @@ public class WikimediaStreamTopicConfig {
     @Bean
     public NewTopic wikimediaStreamTopic(){
         return TopicBuilder
-                .name(TOPIC_NAME)
-                .partitions(ONE).
-                replicas(ONE)
+                .name(TOPIC_NAME_WIKIMEDIA)
+                .partitions(ONE)
+                .replicas(ONE)
                 .build();
     }
 }

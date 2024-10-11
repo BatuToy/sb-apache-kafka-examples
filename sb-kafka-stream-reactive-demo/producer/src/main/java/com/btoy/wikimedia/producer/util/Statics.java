@@ -9,7 +9,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Statics {
 
-    public static final String TOPIC_NAME= "wikimedia-btoy-stream";
-    public static final String GROUP_ID= "wikimedia";
+    public static final String TOPIC_NAME_WIKIMEDIA= "wikimedia-btoy-stream";
+    public static final String TOPIC_NAME_KAFKA_USER= "kafka-user";
+    public static final Integer PARTITION= 1;
+    public static final String GROUP_ID_WIKIMEDIA= "wikimedia";
+    public static final String GROUP_ID_KAFKA_USER = "kafka-user-group";
+    public static final String KAFKA_USER_KEY= "kafka-user";
     public static final Integer ONE= 1;
 }

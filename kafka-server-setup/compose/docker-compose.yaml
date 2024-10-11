@@ -10,3 +10,15 @@ services:
     volumes:
     - ./props/server.properties:/kafka/config/kraft/server.properties
     - ./data:/tmp/kafka-logs
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    ports:
+      - "8085:8085"
+    depends_on:
+      - kafka1
+    environment:
+      KAFKA_CLUSTERS_0_NAME: sboot-kafka-app
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:9092
+      

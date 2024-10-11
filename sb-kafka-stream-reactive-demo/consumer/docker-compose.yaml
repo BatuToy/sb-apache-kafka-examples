@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  consumer-db:
+    container_name: consumer-postgres
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: wikimedia-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+
+
+
+# if you don't give your volume name in here the docker 'deamon' does not allow to rise the container up.
+volumes:
+  data:

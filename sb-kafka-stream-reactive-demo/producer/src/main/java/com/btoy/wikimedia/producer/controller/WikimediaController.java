@@ -13,16 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class WikimediaController {
 
     private final WikimediaStreamConsumer wikimediaStreamConsumer;
+
     /**
      * this method is created for triggering the stream process of the wikimedia.(No other reason)
      */
-    @GetMapping(value = "/start")
-    public ResponseEntity<String> startPublishing(){
+    @GetMapping
+    public ResponseEntity<String> startPublishing() {
         wikimediaStreamConsumer.consumeStreamAndPublishMessage();
-        return ResponseEntity.ok("Started...");
-    }
-    @GetMapping(value = "/a")
-    public ResponseEntity<String> a(){
-        return ResponseEntity.ok("Started...");
+        return ResponseEntity.ok("Stream has been started.");
     }
 }
