@@ -79,7 +79,11 @@
 			<artifactId>lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

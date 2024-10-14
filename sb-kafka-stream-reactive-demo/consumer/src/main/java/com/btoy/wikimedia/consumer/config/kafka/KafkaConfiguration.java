@@ -9,6 +9,7 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
@@ -28,8 +29,10 @@ public class KafkaConfiguration {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID_KAFKA_USER);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        props.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, ErrorHandlingDeserializer.class);
+        props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, ErrorHandlingDeserializer.class);
 
-        JsonDeserializer<Object> payloadJsonDeserializer = new JsonDeserializer<>(Object.class);
+        JsonDeserializer<Object> payloadJsonDeserializer = new JsonDeserializer<>();
         payloadJsonDeserializer.addTrustedPackages("*");
 
         return new DefaultKafkaConsumerFactory<>(props,
