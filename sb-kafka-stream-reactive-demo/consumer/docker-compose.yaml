@@ -1,20 +1,30 @@
 version: '3.8'
 
 services:
-  consumer-db:
-    container_name: consumer-postgres
+  wikimedia-db:
+    container_name: wikimedia-kafka-postgres
     image: postgres:12
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: wikimedia-db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
-      - data:/var/lib/postgresql/data
+      - wikimedia-data:/var/lib/postgresql/wikimedia-db-data
 
+  kafka-user-db:
+    container_name: e
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: kafka-user-db
+    volumes:
+      - kafka-user-data:/var/lib/postgresql/data/kafka-user-data
 
 
 # if you don't give your volume name in here the docker 'deamon' does not allow to rise the container up.
 volumes:
-  data:
+  - kafka-user-data:
+  - wikimedia-data:

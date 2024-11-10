@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: kafka-avro-example
+
+  datasource:
+    url: jdbc:postgres://localhost:5432/example-avro-db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show_sql: true
+
+kafka-config:
+  bootstrap-server: "localhost:9092"
+  replication-factor: 1
+  num-of-partitions: 3
+
+kafka-producer-config:
+  key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  value-serializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
+  topic-name: "avro-topic"
+  acks: 1
+
+
+kafka-consumer-config:
+  keyDeserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+  valueDeserializer: "io.confluent.kafka.serializers.KafkaAvroDeserializer"
+  group-id: "btoy-group"
+  session-time-out-ms: 60
+
+server:
+  port: 9090
+  servlet:
+    context-path: "/api/v1"
+
+
+

@@ -1,0 +1,42 @@
+{
+  "name": "User",
+  "namespace": "com.btoy.kafka_avro.dto",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+    {
+      "name": "lastName",
+      "type": "string"
+    },
+    {
+      "name": "age",
+      "type": "int"
+    },
+    {
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "name": "dbo",
+      "type": {
+        "type": "",
+        "logicalType": "time-millis"
+      }
+    },
+    {
+      "name": "userType",
+      "type": {
+        "type": "enum",
+        "name": "UserType",
+        "symbols": ["BEGINNER", "MEDIUM", "VETERAN"]
+      }
+    }
+  ]
+}

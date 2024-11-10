@@ -15,5 +15,6 @@ public class Statics {
     public static final String GROUP_ID_WIKIMEDIA= "wikimedia";
     public static final String GROUP_ID_KAFKA_USER = "kafka-user-group";
     public static final String KAFKA_USER_KEY= "kafka-user";
+    public static final String WIKIMEDIA_STREAM_KEY= "wikimedia-stream";
     public static final Integer ONE= 1;
 }
