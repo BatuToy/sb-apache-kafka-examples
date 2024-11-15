@@ -3,7 +3,7 @@ package com.btoy.kafka_avro.common;
 import java.util.Objects;
 
 public abstract class BaseEntity<ID>{
-   public ID id;
+   private ID id;
 
     public ID getId() {
         return id;

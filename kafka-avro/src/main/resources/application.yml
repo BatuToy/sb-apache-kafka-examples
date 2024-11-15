@@ -19,12 +19,15 @@ kafka-config:
   bootstrap-server: "localhost:9092"
   replication-factor: 1
   num-of-partitions: 3
+  schema-registry-url: "http://localhost:8081"
+  specific-avro-reader: true
+
 
 kafka-producer-config:
   key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
   value-serializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
   topic-name: "avro-topic"
-  acks: 1
+  acks: "1"
 
 
 kafka-consumer-config:
@@ -32,6 +35,7 @@ kafka-consumer-config:
   valueDeserializer: "io.confluent.kafka.serializers.KafkaAvroDeserializer"
   group-id: "btoy-group"
   session-time-out-ms: 60
+  auto-offset-reset-config: "earliest"
 
 server:
   port: 9090

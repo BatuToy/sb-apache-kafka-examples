@@ -1,12 +1,8 @@
 {
-  "name": "User",
-  "namespace": "com.btoy.kafka_avro.dto",
+  "name": "EmployeeAvro",
+  "namespace": "com.btoy.kafka_avro.dto.avro",
   "type": "record",
   "fields": [
-    {
-      "name": "id",
-      "type": "string"
-    },
     {
       "name": "firstName",
       "type": "string"
@@ -26,17 +22,28 @@
     {
       "name": "dbo",
       "type": {
-        "type": "",
+        "type": "long",
         "logicalType": "time-millis"
       }
     },
     {
-      "name": "userType",
+      "name": "employeeType",
       "type": {
         "type": "enum",
-        "name": "UserType",
-        "symbols": ["BEGINNER", "MEDIUM", "VETERAN"]
+        "name": "EmployeeTypeAvro",
+        "symbols": [
+          "PENDING_TYPE_ASSIGNMENT",
+          "ASSIGNING",
+          "DATA_ANALYST",
+          "BACKEND_DEVELOPER",
+          "FULL_STACK_DEVELOPER",
+          "AI_DEVELOPER"
+        ]
       }
+    },
+    {
+      "name": "isActive",
+      "type": "boolean"
     }
   ]
 }

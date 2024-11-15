@@ -14,4 +14,6 @@ public class KafkaProperties {
     private String topicName;
     private Short replicationFactor;
     private Integer numOfPartitions;
+    private String schemaRegistryUrl;
+    private String specificAvroReader;
 }

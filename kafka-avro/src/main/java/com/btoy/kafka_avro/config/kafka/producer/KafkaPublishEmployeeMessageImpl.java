@@ -1,7 +1,7 @@
 package com.btoy.kafka_avro.config.kafka.producer;
 
-import com.btoy.kafka_avro.dto.avro.User;
-import com.btoy.kafka_avro.ports.output.message.KafkaPublishUserMessage;
+import com.btoy.kafka_avro.dto.avro.EmployeeAvro;
+import com.btoy.kafka_avro.ports.output.message.KafkaPublishEmployeeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -15,12 +15,12 @@ import java.util.concurrent.CompletableFuture;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class KafkaPublishUserMessageImpl implements KafkaPublishUserMessage {
+public class KafkaPublishEmployeeMessageImpl implements KafkaPublishEmployeeMessage {
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
     @Override
-    public void send(User event) {
+    public void send(EmployeeAvro event) {
         final String key = UUID.randomUUID().toString();
         CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send(new ProducerRecord<>(key, event));
         future.whenCompleteAsync((result, exception) ->{
@@ -34,4 +34,5 @@ public class KafkaPublishUserMessageImpl implements KafkaPublishUserMessage {
             }
         });
     }
+
 }

@@ -15,4 +15,5 @@ public class ConsumerProperties {
     private String keyDeserializer;
     private String valueDeserializer;
     private String sessionTimeOutMs;
+    private String autoOffsetResetConfig;
 }

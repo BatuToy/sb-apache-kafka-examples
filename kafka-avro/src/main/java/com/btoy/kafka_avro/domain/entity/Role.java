@@ -10,7 +10,6 @@ public class Role extends BaseEntity<RoleId> {
 
     private RoleType roleType;
 
-
     public Role(RoleId roleId, EmployeeId employeeId, RoleType roleType) {
         super.setId(roleId);
         this.employeeId = employeeId;

@@ -1,6 +1,6 @@
 package com.btoy.kafka_avro.services;
 
-import com.btoy.kafka_avro.dto.create.CreateUserCommand;
+import com.btoy.kafka_avro.dto.create.CreateEmployeeCommand;
 import com.btoy.kafka_avro.dto.create.CreateUserResponse;
 import com.btoy.kafka_avro.ports.input.service.KafkaAvroApplicationService;
 import lombok.RequiredArgsConstructor;
@@ -10,13 +10,15 @@ import org.springframework.validation.annotation.Validated;
 
 @Service
 @RequiredArgsConstructor
-@Validated
 @Slf4j
+@Validated
 public class KafkaAvroApplicationServiceImpl implements KafkaAvroApplicationService {
 
-    private final UserCreateCommandHandler userCreateCommandHandler;
+    private final CreateEmployeeCommandHandler createEmployeeCommandHandler;
+
     @Override
-    public CreateUserResponse createUser(CreateUserCommand createUserCommand) {
-        return userCreateCommandHandler.createUser(createUserCommand);
+    public CreateUserResponse createEmployee(CreateEmployeeCommand createUserCommand) {
+        return createEmployeeCommandHandler.createEmployee(createUserCommand);
+
     }
 }

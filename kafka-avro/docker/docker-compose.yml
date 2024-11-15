@@ -10,6 +10,10 @@ services:
       POSTGRES_USERNAME: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: example-avro-db
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data # Can be different???
+      - ./postgres/data:/var/lib/postgresql/data # Can be different???
+
 
 
   zookeeper:
