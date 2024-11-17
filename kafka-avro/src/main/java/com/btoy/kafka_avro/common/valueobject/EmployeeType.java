@@ -1,8 +1,7 @@
-package com.btoy.kafka_avro.dataaccess.entity;
+package com.btoy.kafka_avro.common.valueobject;
 
 public enum EmployeeType {
-    PENDING_TYPE_ASSIGNMENT,
-    ASSIGNING,
+    WAITING_ASSIGNMENT,
     DATA_ANALYST,
     BACKEND_DEVELOPER,
     FULL_STACK_DEVELOPER,

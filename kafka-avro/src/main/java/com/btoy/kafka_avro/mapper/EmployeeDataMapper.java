@@ -1,8 +1,9 @@
 package com.btoy.kafka_avro.mapper;
 
+import com.btoy.kafka_avro.domain.event.EmployeeJobAssignedEvent;
 import com.btoy.kafka_avro.dto.avro.EmployeeAvro;
 import com.btoy.kafka_avro.dto.create.CreateEmployeeCommand;
-import com.btoy.kafka_avro.dto.create.CreateUserResponse;
+import com.btoy.kafka_avro.dto.create.CreateEmployeeResponse;
 import com.btoy.kafka_avro.domain.aggregate.Employee;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +11,9 @@ import java.time.Instant;
 import java.util.Date;
 
 @Component
-public class UserDataMapper {
+public class EmployeeDataMapper {
 
-    public Employee createUserCommandToUser(CreateEmployeeCommand createUserCommand) {
+    public Employee createEmployeeCommandToEmployee(CreateEmployeeCommand createUserCommand) {
         return Employee.builder()
                 .firstName(createUserCommand.getFirstName())
                 .lastName(createUserCommand.getLastName())
@@ -23,8 +24,8 @@ public class UserDataMapper {
                 .build();
     }
 
-    public CreateUserResponse userToCreateUserResponse(Employee employee, String message){
-        return CreateUserResponse.builder()
+    public CreateEmployeeResponse employeeToCreateEmployeeResponse(Employee employee, String message){
+        return CreateEmployeeResponse.builder()
                 .email(employee.getEmail())
                 .userType(employee.getEmployeeType())
                 .message(message)
@@ -58,4 +59,7 @@ public class UserDataMapper {
         return Date.from(instant);
     }
 
+    public EmployeeJobAssignedEvent employeeToEmployeeAssignedEvent(Employee employee) {
+
+    }
 }

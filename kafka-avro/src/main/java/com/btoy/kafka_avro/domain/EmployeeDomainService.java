@@ -1,5 +1,11 @@
 package com.btoy.kafka_avro.domain;
 
+import com.btoy.kafka_avro.domain.aggregate.Employee;
+import com.btoy.kafka_avro.domain.event.EmployeeJobAssignedEvent;
+import com.btoy.kafka_avro.domain.event.EmployeeCreatedEvent;
+import org.springframework.stereotype.Service;
+
 public interface EmployeeDomainService {
-    // Write methods about the business logic of employee creation process!
+    EmployeeCreatedEvent validateAndInitializeEmployee(Employee employee);
+    EmployeeJobAssignedEvent assignJobToEmployee(Employee employee);
 }

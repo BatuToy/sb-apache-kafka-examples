@@ -1,69 +1,82 @@
 package com.btoy.kafka_avro.domain.aggregate;
 
 import com.btoy.kafka_avro.common.AggregateRoot;
-import com.btoy.kafka_avro.exception.UserDomainException;
-import com.btoy.kafka_avro.domain.valueObject.EmployeeType;
+import com.btoy.kafka_avro.common.valueobject.RoleType;
+import com.btoy.kafka_avro.domain.entity.Role;
+import com.btoy.kafka_avro.domain.valueObject.RoleId;
+import com.btoy.kafka_avro.exception.EmployeeDomainException;
+import com.btoy.kafka_avro.common.valueobject.EmployeeType;
 import com.btoy.kafka_avro.domain.valueObject.EmployeeId;
-import com.btoy.kafka_avro.domain.valueObject.Money;
+import com.btoy.kafka_avro.common.valueobject.Money;
 import lombok.*;
 
-import javax.swing.*;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.UUID;
 
-// Find more domain logic about employee aggregate and around relational entities with support of ValueObjects
-
-@Getter
 @Setter
-@ToString
 public class Employee extends AggregateRoot<EmployeeId> {
     private final String firstName;
     private final String lastName;
     private final String email;
     private final int age;
     private final Date dbo;
-
     private EmployeeType employeeType;
+    private Role role;
     private Money salary;
 
-    private Employee(Builder builder) {
-        super.setId(builder.employeeId);
-        firstName = builder.firstName;
-        lastName = builder.lastName;
-        email = builder.email;
-        age = builder.age;
-        dbo = builder.dbo;
-        setEmployeeType(builder.employeeType);
-        setSalary(builder.salary);
-    }
 
     public void initializeEmployee(){
         super.setId(new EmployeeId(UUID.randomUUID()));
-        setEmployeeType(EmployeeType.PENDING_TYPE_ASSIGNMENT);
+        this.employeeType = EmployeeType.WAITING_ASSIGNMENT;
+        initializeRole();
     }
 
     public void validateEmployee(){
-        if(employeeType != null && super.getId() != null){
-            throw new UserDomainException("Employee with id: " + super.getId().getValue() + "was already initialized!");
-        }
-    }
-
-    public void validateSalary(){
-        if(salary == null || !salary.isGreaterThenZero()){
-            throw new UserDomainException("Salary can not be null or lesser then or equal to zero!");
-        }
+        validate();
+        validateSalary();
+        validateEmployeeType();
+        validateRole();
     }
 
     public void assignJob(EmployeeType employeeType){
-        if(!(this.employeeType == EmployeeType.PENDING_TYPE_ASSIGNMENT || this.employeeType == EmployeeType.ASSIGNING)){
-            throw new UserDomainException("User can not be assign now with the status: " + this.employeeType);
+        if(this.employeeType != EmployeeType.WAITING_ASSIGNMENT){
+            throw new EmployeeDomainException("Employee type is not correct state for job assignment with employee id: "
+             + super.getId().getValue());
         }
-        this.employeeType = EmployeeType.ASSIGNING;
+        this.employeeType = employeeType;
     }
 
-    public Employee(EmployeeId employeeId, String firstName, String lastName, String email, int age, Date dbo, EmployeeType employeeType, Money salary) {
+    private void validate(){
+        if(employeeType != null && super.getId() != null){
+            throw new EmployeeDomainException("Employee with id: " + super.getId().getValue() + "was already initialized!");
+        }
+    }
+
+    private void validateSalary(){
+        if(salary == null || !salary.isGreaterThenZero()){
+            throw new EmployeeDomainException("Salary can not be null or lesser then or equal to zero!");
+        }
+    }
+
+    private void validateEmployeeType(){
+        if(this.employeeType != EmployeeType.WAITING_ASSIGNMENT){
+            throw new EmployeeDomainException("User can not be assign with the status: " + this.employeeType);
+        }
+    }
+
+    private void validateRole(){
+        if(this.role.getRoleType()!= RoleType.PENDING_ROLE_ASSIGNMENT){
+            throw new EmployeeDomainException("Employee is not correct state for role type!");
+        }
+    }
+
+    private void initializeRole(){
+        role.initializeRoleAndRoleType(new RoleId( UUID.randomUUID()));
+    }
+
+    public Employee(EmployeeId employeeId, Role role, String firstName, String lastName, String email, int age, Date dbo, EmployeeType employeeType, Money salary) {
         super.setId(employeeId);
+        this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -73,22 +86,70 @@ public class Employee extends AggregateRoot<EmployeeId> {
         this.salary = salary;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Date getDbo() {
+        return dbo;
+    }
+
+    public EmployeeType getEmployeeType() {
+        return employeeType;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public Money getSalary() {
+        return salary;
+    }
+
+    private Employee(Builder builder) {
+        super.setId(builder.employeeId);
+        role = builder.role;
+        firstName = builder.firstName;
+        lastName = builder.lastName;
+        email = builder.email;
+        age = builder.age;
+        dbo = builder.dbo;
+        setEmployeeType(builder.employeeType);
+        setSalary(builder.salary);
+    }
 
     public static Builder builder() {
         return new Builder();
     }
     public static final class Builder {
         private EmployeeId employeeId;
+        private Role role;
         private String firstName;
         private String lastName;
         private String email;
         private int age;
         private Date dbo;
         private EmployeeType employeeType;
-
         private Money salary;
 
         private Builder() {
+        }
+
+        public Builder role(Role val){
+            role = val;
+            return this;
         }
 
         public Builder id(EmployeeId val) {

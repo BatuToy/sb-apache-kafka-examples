@@ -1,16 +1,16 @@
-package com.btoy.kafka_avro.common;
+package com.btoy.kafka_avro.common.valueobject;
 
 import java.util.Objects;
 
 public abstract class BaseId<T> {
-    public T value;
+    private final T val;
     
     public T getValue() {
-        return value;
+        return val;
     }
 
-    public BaseId(T value) {
-        this.value = value;
+    public BaseId(T val) {
+        this.val = val;
     }
 
     @Override
@@ -18,11 +18,11 @@ public abstract class BaseId<T> {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         BaseId<?> baseId = (BaseId<?>) object;
-        return Objects.equals(value, baseId.value);
+        return Objects.equals(val, baseId.val);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(value);
+        return Objects.hashCode(val);
     }
 }

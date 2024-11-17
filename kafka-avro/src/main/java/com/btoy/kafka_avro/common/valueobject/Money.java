@@ -1,4 +1,4 @@
-package com.btoy.kafka_avro.domain.valueObject;
+package com.btoy.kafka_avro.common.valueobject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,6 +1,6 @@
 package com.btoy.kafka_avro.domain.valueObject;
 
-import com.btoy.kafka_avro.common.BaseId;
+import com.btoy.kafka_avro.common.valueobject.BaseId;
 
 import java.util.UUID;
 

@@ -1,16 +1,15 @@
 package com.btoy.kafka_avro.dto.create;
 
 
-import com.btoy.kafka_avro.domain.valueObject.EmployeeType;
+import com.btoy.kafka_avro.common.valueobject.EmployeeType;
+import com.btoy.kafka_avro.domain.entity.Role;
+import com.btoy.kafka_avro.domain.valueObject.RoleId;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Getter
@@ -19,15 +18,16 @@ import java.util.Date;
 @Builder
 public class CreateEmployeeCommand {
     @NotNull
+    private RoleId roleId;
+    @NotNull
     private String firstName;
     @NotNull
     private String lastName;
     @NotNull
     private String email;
     @NotNull
-    private Date dbo;
-
-    private int age;
     private EmployeeType employeeType;
+    private Date dbo;
+    private int age;
 
 }
