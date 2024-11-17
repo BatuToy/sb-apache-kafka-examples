@@ -2,7 +2,6 @@ package com.btoy.kafka_avro.dto.create;
 
 
 import com.btoy.kafka_avro.common.valueobject.EmployeeType;
-import com.btoy.kafka_avro.domain.entity.Role;
 import com.btoy.kafka_avro.domain.valueObject.RoleId;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

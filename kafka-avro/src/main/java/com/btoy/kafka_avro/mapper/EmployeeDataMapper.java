@@ -58,8 +58,5 @@ public class EmployeeDataMapper {
         Instant instant = Instant.ofEpochMilli(timestamp);
         return Date.from(instant);
     }
-
-    public EmployeeJobAssignedEvent employeeToEmployeeAssignedEvent(Employee employee) {
-
-    }
+    
 }

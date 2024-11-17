@@ -1,4 +1,4 @@
-package com.btoy.kafka_avro.services;
+package com.btoy.kafka_avro;
 
 import com.btoy.kafka_avro.config.kafka.producer.KafkaPublishEmployeeMessageImpl;
 import com.btoy.kafka_avro.domain.EmployeeDomainService;
@@ -26,10 +26,10 @@ public class CreateEmployeeHelper {
     public EmployeeCreatedEvent persistEmployee(CreateEmployeeCommand createEmployeeCommand){
         Employee employee = employeeDataMapper.createEmployeeCommandToEmployee(createEmployeeCommand);
         EmployeeCreatedEvent employeeCreatedEvent = employeeDomainService.validateAndInitializeEmployee(employee);
-        return null;
+        saveEmployee(employee);
+        log.info("Employee saved to the database successfully with employee id: {}", employee.getId().getValue());
+        return employeeCreatedEvent;
     }
 
-    private Employee saveEmployee(Employee employee){
-        return null;
-    }
+    private void saveEmployee(Employee employee) {}
 }
