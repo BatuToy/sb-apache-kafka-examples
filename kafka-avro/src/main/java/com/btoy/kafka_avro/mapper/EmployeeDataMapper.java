@@ -54,6 +54,17 @@ public class EmployeeDataMapper {
                 .build();
     }
 
+    public EmployeeAvro employeeToEmployeeAvro(Employee employee){
+        return EmployeeAvro.builder()
+                .setAge(employee.getAge())
+                .setEmail(employee.getEmail())
+                .setFirstName(employee.getFirstName())
+                .setLastName(employee.getLastName())
+                .setIsActive(false)
+                .setDbo(employee.getDbo().getTime())
+                .build();
+    }
+
     private Date longToDate(long timestamp){
         Instant instant = Instant.ofEpochMilli(timestamp);
         return Date.from(instant);

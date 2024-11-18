@@ -1,7 +1,7 @@
 package com.btoy.kafka_avro.config.kafka.common.event;
 
-import org.apache.avro.specific.SpecificRecord;
+import com.btoy.kafka_avro.common.event.DomainEvent;
 
-public interface EventPublisher<T extends SpecificRecord> {
+public interface EventPublisher<T> {
     void send(T event);
 }

@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
 class CreateEmployeeCommandHandler {
 
     private final EmployeeDataMapper employeeDataMapper;
-    private final KafkaPublishEmployeeMessageImpl kafkaPublishUserMessageImpl;
     private final CreateEmployeeHelper createEmployeeHelper;
+    private final KafkaPublishEmployeeMessageImpl kafkaPublishUserMessageImpl;
 
     public CreateEmployeeResponse createEmployee(CreateEmployeeCommand createEmployeeCommand) {
         EmployeeCreatedEvent employeeCreatedEvent = createEmployeeHelper.persistEmployee(createEmployeeCommand);
-        //kafkaPublishUserMessageImpl.send(employeeCreatedEvent);
+        kafkaPublishUserMessageImpl.send(employeeCreatedEvent);
         Employee employee = employeeCreatedEvent.getEmployee();
         log.info("Employee created successfully with id: {}", employee.getId().getValue());
         return employeeDataMapper.employeeToCreateEmployeeResponse(employee,

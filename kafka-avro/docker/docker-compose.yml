@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   postgres-avro:
-    container_name: kafka-avro-compose
+    container_name: postgres-db
     image: postgres:12
     ports:
       - "5432:5432"

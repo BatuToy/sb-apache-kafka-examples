@@ -1,4 +1,4 @@
-package com.btoy.kafka_avro.common;
+package com.btoy.kafka_avro.common.entity;
 
 import java.util.Objects;
 

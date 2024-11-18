@@ -1,6 +1,8 @@
-package com.btoy.kafka_avro.exception;
+package com.btoy.kafka_avro.domain.exception;
 
-public class EmployeeDomainException extends RuntimeException{
+import com.btoy.kafka_avro.common.exception.DomainException;
+
+public class EmployeeDomainException extends DomainException {
     public EmployeeDomainException(String message) {
         super(message);
     }

@@ -1,6 +1,6 @@
 package com.btoy.kafka_avro.domain.entity;
 
-import com.btoy.kafka_avro.common.BaseEntity;
+import com.btoy.kafka_avro.common.entity.BaseEntity;
 import com.btoy.kafka_avro.domain.valueObject.EmployeeId;
 import com.btoy.kafka_avro.domain.valueObject.RoleId;
 import com.btoy.kafka_avro.common.valueobject.RoleType;

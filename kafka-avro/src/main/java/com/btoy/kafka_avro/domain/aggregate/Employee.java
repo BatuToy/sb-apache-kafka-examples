@@ -1,10 +1,10 @@
 package com.btoy.kafka_avro.domain.aggregate;
 
-import com.btoy.kafka_avro.common.AggregateRoot;
+import com.btoy.kafka_avro.common.entity.AggregateRoot;
 import com.btoy.kafka_avro.common.valueobject.RoleType;
 import com.btoy.kafka_avro.domain.entity.Role;
 import com.btoy.kafka_avro.domain.valueObject.RoleId;
-import com.btoy.kafka_avro.exception.EmployeeDomainException;
+import com.btoy.kafka_avro.domain.exception.EmployeeDomainException;
 import com.btoy.kafka_avro.common.valueobject.EmployeeType;
 import com.btoy.kafka_avro.domain.valueObject.EmployeeId;
 import com.btoy.kafka_avro.common.valueobject.Money;
