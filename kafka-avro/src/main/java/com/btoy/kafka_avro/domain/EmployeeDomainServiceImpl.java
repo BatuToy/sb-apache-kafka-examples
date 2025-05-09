@@ -3,14 +3,12 @@ package com.btoy.kafka_avro.domain;
 import com.btoy.kafka_avro.domain.aggregate.Employee;
 import com.btoy.kafka_avro.domain.event.EmployeeJobAssignedEvent;
 import com.btoy.kafka_avro.domain.event.EmployeeCreatedEvent;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 
 @Slf4j
-@RequiredArgsConstructor
 @Service
 public class EmployeeDomainServiceImpl implements EmployeeDomainService{
 

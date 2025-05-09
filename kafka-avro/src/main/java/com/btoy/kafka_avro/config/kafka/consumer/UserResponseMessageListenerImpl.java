@@ -26,8 +26,6 @@ public class UserResponseMessageListenerImpl implements EmployeeResponseMessageL
         log.info("Event consumed offset: {}", avroConsumerRecord.offset());
         log.info("Event consumed with key: {}", avroConsumerRecord.key());
         log.info("Event consumed with avro value: {}", employeeAvro);
-        // map to domain object!
-        // persist to db! -? Go To send() again WTF!
         ack.acknowledge();
     }
 }

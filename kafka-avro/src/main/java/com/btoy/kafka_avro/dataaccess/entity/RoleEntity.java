@@ -14,17 +14,18 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "t_roles")
+@Table(name = "roles")
 @Entity
 @Data
 public class RoleEntity {
     @Id
-    @NotNull
     private UUID roleId;
-    @NotNull
+
+    @Id
     @Column(name = "EMPLOYEE_ID")
-    private UUID employeeId;
-    @NotNull
+    @OneToMany(mappedBy = "EMPLOYEE", cascade = CascadeType.ALL)
+    private EmployeeEntity employeeEntity;
+
     @Column(name = "ROLE_TYPE")
     private RoleType roleType;
 //    @Column(name = "EMPLOYEES")

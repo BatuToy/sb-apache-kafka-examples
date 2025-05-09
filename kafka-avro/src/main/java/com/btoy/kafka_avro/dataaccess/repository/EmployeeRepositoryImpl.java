@@ -20,7 +20,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public Employee save(Employee employee) {
-        employeeJpaRepository.save(jpaMapper.domainEmployeeToEmployeeEntity(employee));
+        employeeJpaRepository.save(jpaMapper.employeeToEmployeeEntity(employee));
         return employee;
     }
 }

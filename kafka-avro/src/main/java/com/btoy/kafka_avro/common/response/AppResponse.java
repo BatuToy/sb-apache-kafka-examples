@@ -1,12 +1,14 @@
 package com.btoy.kafka_avro.common.response;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 public class AppResponse<T> {
     private final HttpStatus status;
     private T data;
     private String infoMessage;
     private String errorMessage;
+
 
     public AppResponse(HttpStatus status, T data, String infoMessage) {
         this.status = status;

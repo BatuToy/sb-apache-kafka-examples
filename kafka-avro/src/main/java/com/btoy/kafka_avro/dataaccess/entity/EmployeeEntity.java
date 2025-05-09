@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.UUID;
 
-@Table(name = "t_employee")
+@Table(name = "emplyees")
 @Entity
 @Builder
 @AllArgsConstructor
@@ -34,9 +34,10 @@ public class EmployeeEntity {
     @Column(name = "AGE")
     private int age;
     @Column(name = "EMPLOYEE_TYPE")
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private EmployeeType employeeType;
-    @OneToOne
-    private RoleEntity role;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ROLE_ID")
+    private Role role;
 
 }
